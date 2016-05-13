@@ -1,0 +1,22 @@
+#!/bin/sh
+
+if [ -z "$1" ]
+then
+	>&2 echo "crush FILENAME"
+	exit 1
+fi
+
+if [ -f "$1" ]
+then
+	read -p "Crush file \"$1\"? [y/N] " -r
+	if [[ $REPLY =~ ^[Yy]$ ]]
+	then
+		truncate -s 0 "$1" && rm "$1"
+		echo "crush -- File \"$1\" crushed"
+	else
+		echo "crush -- Operation aborted"
+	fi
+else
+	>&2 echo "crush -- \"$1\" is not a regular file"
+	exit 1
+fi

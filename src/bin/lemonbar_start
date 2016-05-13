@@ -1,0 +1,11 @@
+#!/bin/bash
+## lemonbar_start.sh for Lemonbar in /home/schlipak/bin
+## 
+## Made by Guillaume de Matos
+## Login   <de-mat_b@epitech.net>
+## 
+## Started on  Fri Mar 18 02:22:52 2016 Guillaume de Matos
+## Last update Fri Mar 18 02:39:08 2016 Guillaume de Matos
+##
+
+/home/schlipak/bin/__lemonbar_init__ 2>/dev/null &

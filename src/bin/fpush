@@ -1,0 +1,19 @@
+#!/bin/sh
+## fpush for Push that in /home/de-mat_b/rendu/Piscine_C_J02
+## 
+## Made by Guillaume DE MATOS
+## Login   <de-mat_b@epitech.net>
+## 
+## Started on  Tue Sep 29 14:03:30 2015 Guillaume DE MATOS
+## Last update Tue Oct 27 17:19:13 2015 Guillaume DE MATOS
+##
+
+message="$1"
+if [ -z "$1" ];
+    then
+	message="Auto push";
+fi
+
+git add --all
+git commit -am "$message"
+git push origin master

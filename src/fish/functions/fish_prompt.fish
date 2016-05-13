@@ -1,0 +1,1 @@
+/home/schlipak/.local/share/omf/themes/schlipak/fish_prompt.fish

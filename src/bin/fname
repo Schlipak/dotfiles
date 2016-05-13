@@ -1,0 +1,15 @@
+#!/bin/sh
+## fname for Find By Name in /home/de-mat_b/bin
+## 
+## Made by Guillaume DE MATOS
+## Login   <de-mat_b@epitech.net>
+## 
+## Started on  Thu Oct 15 09:53:33 2015 Guillaume DE MATOS
+## Last update Wed Feb  3 18:22:39 2016 Guillaume de Matos
+##
+
+if [ $# -eq 1 ]; then
+    find . -name "*$1*" 2>/dev/null;
+else
+    echo "Usage: fname FILENAME";
+fi

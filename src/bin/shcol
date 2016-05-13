@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+txt="Lorem ipsum"
+if [ ! -z $1 ]; then
+    txt=$1
+fi
+
+echo
+for col in {0..7}
+do
+    echo -ne " "
+    for mode in {0..6}
+    do
+	echo -ne "${mode};3${col} \e[${mode};3${col}m${txt}\e[0m "
+    done
+    echo -e "7;3${col} \e[7;3${col}m${txt}\e[0m "
+done
+echo
+for col in {0..7}
+do
+    echo -ne " "
+    for mode in {0..6}
+    do
+	echo -ne "${mode};4${col} \e[${mode};4${col}m${txt}\e[0m "
+    done
+    echo -e "7;4${col} \e[7;4${col}m${txt}\e[0m "
+done
+echo

@@ -1,0 +1,17 @@
+# Overwrite this file if you want to have a permanent setting
+use_xft yes
+xftfont Roboto-16
+xftalpha 0.1
+total_run_times 0
+own_window yes
+own_window_type panel
+alignment tl
+own_window_class conky
+own_window_transparent yes
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+double_buffer yes
+minimum_size 1920 40
+override_utf8_locale yes
+use_spacer left
+
+TEXT

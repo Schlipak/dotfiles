@@ -1,0 +1,65 @@
+#!/bin/sh
+## prepare_my_repo.sh for Prepare my repo in /home/de-mat_b/rendu/Piscine_C_J02
+## 
+## Made by Guillaume de Matos
+## Login   <de-mat_b@epitech.net>
+## 
+## Started on  Tue Sep 29 13:26:32 2015 Guillaume de Matos
+## Last update Sat Mar 19 13:57:57 2016 Guillaume de Matos
+##
+
+## echo -n $passw | sha512sum | cur -f1 -d' '
+
+reponame="$1"
+default="$USER"
+if [[ $USER = "schlipak" ]]
+then
+    default="de-mat_b"
+fi
+
+read -p "Repository owner's username: [$default] " username
+if [[ $username = "" ]]
+then
+    echo "Defaulting to $default"
+    username="$default"
+fi
+if [[ $reponame = "" ]]
+then
+    while [[ $reponame = "" ]]
+    do
+        read -p "Repository name: " reponame
+    done
+fi
+read -s -p "Password for $username: " passw
+echo
+hash="`echo -n $passw | sha512sum | cut -f1 -d' '`"
+
+blih -u "$username" -t "$hash" repository create "$reponame"
+ret=$?
+if [[ $ret -ne 0 ]]
+then
+    notify-send -t 5000 "Prepo" "Error: Cannot create repository $username/$reponame" -i ~/.icons/error
+    exit $ret
+fi
+blih -u "$username" -t "$hash" repository setacl "$reponame" ramassage-tek r
+ret=$?
+if [[ $ret -ne 0 ]]
+then
+    notify-send -t 5000 "Prepo" "Error: Cannot set ACLs for $username/$reponame" -i ~/.icons/error
+    exit $ret
+fi
+blih -u "$username" -t "$hash" repository getacl "$reponame"
+ret=$?
+if [[ $ret -ne 0 ]]
+then
+    notify-send -t 5000 "Prepo" "Error: Cannot get ACLs for $username/$reponame" -i ~/.icons/error
+    exit $ret
+fi
+git clone git@git.epitech.eu:/"$username"/"$reponame"
+ret=$?
+if [[ $ret -ne 0 ]]
+then
+    notify-send -t 5000 "Prepo" "Error: Cannot clone repository $username/$reponame" -i ~/.icons/error
+    exit $ret
+fi
+notify-send -t 5000 "Prepo" "Repository $username/$reponame successfully created and cloned" -i ~/.icons/success

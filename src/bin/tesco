@@ -1,0 +1,62 @@
+#!/bin/bash
+
+doPing=0
+test_1=0
+test_2=0
+if [ $# -ge 1 ]
+then
+    if [[ $1 = "-p" ]]
+    then
+	doPing=1
+    fi
+fi
+
+echo "Testing connection..."
+curl -m3 www.google.fr >/dev/null 2>&1
+test_1=$?
+if [ "$test_1" -eq 0 ]
+then
+    echo -ne "\e[1;32mConnection OK\e[0m"
+else
+    echo -ne "\e[1;31mConnection KO\e[0m"
+fi
+if [ $doPing -eq 1 ]
+then
+    ping=$(ping -c4 www.google.fr 2>/dev/null|tail -1| awk '{print $4}'|cut -d'/' -f2)
+    if [[ $ping = "" ]]
+    then
+	ping="??"
+    fi
+    echo -n " (${ping}ms)"
+fi
+
+echo
+echo "Testing blih server..."
+curl -m3 https://blih.epitech.eu/ >/dev/null 2>&1
+test_2=$?
+if [ "$test_2" -eq 0 ]
+then
+    echo -ne "\e[1;32mConnection OK\e[0m"
+else
+    echo -ne "\e[1;31mConnection KO\e[0m"
+fi
+if [ $doPing -eq 1 ]
+then
+    ping=$(ping -c4 blih.epitech.eu 2>/dev/null|tail -1| awk '{print $4}'|cut -d'/' -f2)
+    if [[ $ping = "" ]]
+    then
+	ping="??"
+    fi
+    echo -n " (${ping}ms)"
+fi
+echo
+
+if [ "$test_1" -eq 0 ] && [ "$test_2" -eq 0 ]
+then
+    notify-send -t 4000 "Tesco" "Network is up and running!" -i ~/.icons/success
+elif [[ ( "$test_1" -eq 0 && "$test_2" -ne 0 ) || ( "$test_1" -ne 0 && "$test_2" -eq 0 ) ]]
+then
+    notify-send -t 4000 "Tesco" "Network seems to have some trouble..." -i ~/.icons/warning
+else
+    notify-send -t 4000 "Tesco" "Network is down :(" -i ~/.icons/error
+fi

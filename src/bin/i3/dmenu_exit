@@ -1,0 +1,31 @@
+#!/bin/bash
+
+function ask() {
+    [ -z $1 ] && exit 1;
+    ret=$(echo -e "$1" | dmenu -nb '#2d2d2d' -nf '#f8f8f2' -sb '#d64937' -sf '#ffffff' -fn 'Roboto-10' -w 1880 -h 40 -x 20 -y 20 -i -dim 0.5 -p "$2")
+    echo -e $ret
+}
+
+select=$(ask 'Lock\nLogout\nSuspend\nReboot\nShutdown' ' Actions > ')
+case ${select} in
+    "Lock")
+        slock -m pixelize /home/schlipak/.icons/key.png
+        ;;
+    "Logout")
+        i3-msg exit
+        ;;
+	"Suspend")
+		i3exit suspend
+		;;
+	"Reboot")
+        ans=$(ask 'No\nYes' ' Are you sure? ')
+		[ $ans == "Yes" ] && i3exit reboot
+		;;
+	"Shutdown")
+        ans=$(ask 'No\nYes' ' Are you sure? ')
+		[ $ans == "Yes" ] && i3exit shutdown
+		;;
+	*)
+		exit 1
+		;;
+esac
