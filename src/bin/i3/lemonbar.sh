@@ -70,7 +70,7 @@ workspaces () {
 # Get current time
 gettime () {
     hour=$(date '+%H:%M')
-    echo -e "%{F${color_main}${spacing}\uf3b3  ${hour}${spacing}%{F}"
+    echo -e "%{F${color_main}}${spacing}\uf3b3  ${hour}${spacing}%{F}"
 }
 
 # Get battery indicator and percentage

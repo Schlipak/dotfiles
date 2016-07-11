@@ -5,15 +5,16 @@
 ## Login   <de-mat_b@epitech.net>
 ## 
 ## Started on  Tue Sep 29 14:03:30 2015 Guillaume DE MATOS
-## Last update Tue Oct 27 17:19:13 2015 Guillaume DE MATOS
+## Last update Tue Jun 14 09:47:51 2016 Guillaume de Matos
 ##
 
 message="$1"
 if [ -z "$1" ];
-    then
+then
 	message="Auto push";
 fi
 
 git add --all
-git commit -am "$message"
-git push origin master
+git commit -m "$message"
+git push
+

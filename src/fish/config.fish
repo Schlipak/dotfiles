@@ -15,3 +15,6 @@ set -gx VISUAL emacs
 
 source /home/schlipak/.config/fish/functions/aliases.fish
 source /home/schlipak/.config/fish/functions/colorscheme.fish
+
+# TheFuck
+eval (thefuck --alias | tr '\n' ';')

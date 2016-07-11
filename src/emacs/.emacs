@@ -87,6 +87,9 @@
 (setq sml/no-confirm-load-theme t)
 (sml/setup)
 
+;; Map Crystal files to Ruby syntax
+(add-to-list 'auto-mode-alist '("\\.cr\\'" . ruby-mode))
+
 ;; CUSTOM SET VARS
 ;; This really should be on top of the file, but it breaks EVERYTHING to move it
 ;; So, fuck this.
@@ -117,6 +120,7 @@
  '(magit-diff-use-overlays nil)
  '(pos-tip-background-color "#A6E22E")
  '(pos-tip-foreground-color "#2D2D2D")
+ '(safe-local-variable-values (quote ((encoding . utf-8))))
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
    (quote
