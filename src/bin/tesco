@@ -53,10 +53,10 @@ echo
 
 if [ "$test_1" -eq 0 ] && [ "$test_2" -eq 0 ]
 then
-    notify-send -t 4000 "Tesco" "Network is up and running!" -i ~/.icons/success
+    notify-send -t 4000 "Tesco" "Network is up and running!" -i dialog-ok
 elif [[ ( "$test_1" -eq 0 && "$test_2" -ne 0 ) || ( "$test_1" -ne 0 && "$test_2" -eq 0 ) ]]
 then
-    notify-send -t 4000 "Tesco" "Network seems to have some trouble..." -i ~/.icons/warning
+    notify-send -t 4000 "Tesco" "Network seems to have some trouble..." -i dialog-warning
 else
-    notify-send -t 4000 "Tesco" "Network is down :(" -i ~/.icons/error
+    notify-send -t 4000 "Tesco" "Network is down :(" -i dialog-error
 fi

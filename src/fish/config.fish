@@ -12,6 +12,8 @@ set -gx PATH $PATH /home/$USER/bin /home/$USER/.gem/ruby/2.3.0/bin
 
 # Load personal config
 set -gx VISUAL emacs
+set -gx QT_QPA_PLATFORMTHEME qt5ct
+set -e DESKTOP_SESSION
 
 source /home/schlipak/.config/fish/functions/aliases.fish
 source /home/schlipak/.config/fish/functions/colorscheme.fish
