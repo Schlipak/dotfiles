@@ -9,6 +9,8 @@ set -e fish_greeting
 
 # Update PATH
 set -gx PATH $PATH /home/$USER/bin /home/$USER/.gem/ruby/2.3.0/bin
+set -gx LIBRARY_PATH $LIBRARY_PATH /usr/local/lib
+set -gx LD_LIBRARY_PATH $LD_LIBRARY_PATH $LIBRARY_PATH
 
 # Load personal config
 set -gx VISUAL emacs

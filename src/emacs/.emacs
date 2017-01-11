@@ -118,6 +118,9 @@
      ("#A41F99" . 85)
      ("#3E3D31" . 100))))
  '(magit-diff-use-overlays nil)
+ '(package-selected-packages
+   (quote
+    (vala-mode dockerfile-mode yaml-mode xterm-color stylus-mode smart-mode-line-powerline-theme scss-mode pkgbuild-mode pkg-info nhexl-mode monokai-theme markdown-preview-mode lorem-ipsum highlight-parentheses gitignore-mode fish-mode dash csharp-mode coffee-mode cmake-mode caml auto-complete ascii 2048-game)))
  '(pos-tip-background-color "#A6E22E")
  '(pos-tip-foreground-color "#2D2D2D")
  '(safe-local-variable-values (quote ((encoding . utf-8))))

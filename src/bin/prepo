@@ -5,7 +5,7 @@
 ## Login   <de-mat_b@epitech.net>
 ## 
 ## Started on  Tue Sep 29 13:26:32 2015 Guillaume de Matos
-## Last update Sat Mar 19 13:57:57 2016 Guillaume de Matos
+## Last update Sat Oct 15 16:59:25 2016 Guillaume de Matos
 ##
 
 ## echo -n $passw | sha512sum | cur -f1 -d' '

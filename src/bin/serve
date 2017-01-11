@@ -1,0 +1,68 @@
+#!/usr/bin/env ruby
+
+require 'colorize'
+require 'optparse'
+require 'webrick'
+
+module Serve
+  class Parser
+    USAGE = "#{File.basename($0)} [options]"
+
+    attr_reader :parser, :options
+
+    def initialize
+      @parser = nil
+      @options = {
+        :port => 9090,
+        :root => Dir.pwd
+      }
+    end
+
+    def parse!
+      begin
+        @parser = ::OptionParser.new(USAGE, 23, '  ') do |opts|
+          opts.on('-h', '--help', 'Show the help') do
+            puts help
+            exit! 0
+          end
+
+          opts.on('-p PORT', '--port', Integer, 'Set the port number') do |v|
+            @options[:port] = v
+          end
+
+          opts.on('-r DOCUMENT_ROOT', '--root', String, 'Set the document root') do |v|
+            @options[:root] = File.expand_path(v)
+          end
+        end
+        @parser.parse!
+      rescue StandardError => e
+        STDERR.puts "[#{e.class}] #{e.message}"
+        exit! -1
+      end
+      @options
+    end
+
+    def help
+      return nil unless @parser
+      @parser.help
+    end
+  end
+  
+  def self.run!
+    options = Parser.new.parse!
+    puts "Starting server on port #{options[:port]} with root #{options[:root]}".colorize(
+           :color => :blue
+    )
+    serv = WEBrick::HTTPServer.new(
+      :Port => options[:port],
+      :DocumentRoot => options[:root]
+    )
+    trap(:INT) do
+      STDOUT.write "\r"
+      serv.shutdown
+    end
+    serv.start
+  end
+end
+
+Serve.run! if __FILE__ == $0

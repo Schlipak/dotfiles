@@ -16,5 +16,6 @@ alias clangw    'clang -W -Wall -Werror -Wextra'
 alias debug     'c; c; clangw -c *.cpp; rm -f *.o'
 alias tree      'tree -C'
 alias jsc       'rlwrap jsc'
-alias serve     'ruby -r webrick -e "s = WEBrick::HTTPServer.new(:Port => 9090, :DocumentRoot => Dir.pwd); trap(\'INT\') { s.shutdown }; s.start"'
+alias nc        'rlwrap nc'
 alias copy      'xclip -selection c'
+
